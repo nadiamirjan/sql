@@ -47,8 +47,12 @@ There are several tools online you can use, I'd recommend [Draw.io](https://www.
 
 **HINT:** You do not need to create any data for this prompt. This is a conceptual model only. 
 
+![alt text](image-1.png)
+
 #### Prompt 2
 We want to create employee shifts, splitting up the day into morning and evening. Add this to the ERD.
+
+![alt text](image-2.png)
 
 #### Prompt 3
 The store wants to keep customer addresses. Propose two architectures for the CUSTOMER_ADDRESS table, one that will retain changes, and another that will overwrite. Which is type 1, which is type 2? 
@@ -56,7 +60,9 @@ The store wants to keep customer addresses. Propose two architectures for the CU
 **HINT:** search type 1 vs type 2 slowly changing dimensions. 
 
 ```
-Your answer...
+Architecture 1: Only one address record, so when a customer would like to replace the previous address with a new one, the row would be updated. After researching, this would fall under the type 1 slowly changing dimension, as the old value is overwritten and history is not retained. Example columns: customer_address_id, customer_id.
+
+Architecture 2: New row added each time a customer would like to change address instead of updating the old row. What made me better undestand this was thinking it was like creating new versions of the same file in a OneDrive and instead of replacing it, you save it under v.2, v.3 etc. The previous record is still there in the table, and date fields are used to show which address is active. This is the type 2 slowly changing dimensions. It stores multiple rows for the same customer over time. Example columns: customer_address_id, customer_id, current_flag (flags which address is active), address_start (when a specific address started being active), address_end (when a specific address ended being active).
 ```
 
 ***
@@ -191,5 +197,9 @@ Consider, for example, concepts of labour, bias, LLM proliferation, moderating c
 
 
 ```
-Your thoughts...
+There are many ethical issues that have been risen in this story. One of the major ones is the presence of offensive terms used by AI systems. For example, the ImageNet dataset categorized people with harmful language such as "nerd". Evidently, this may reflect human biases that made its way for data classification. Concerns like these warrant conversations around representation, fairness, content moderation or potential harm to individuals and groups.
+
+A second important ethical issue that stood out to me as a graduate student was the fact that there was a lack of recognition or credit to graduate students that built some of these systems. It highlights that while some prominent researchers get credit for their fondational work, it often relies on multiple other academic contributions that went unnoticed. This raises important questions regarding authorship and intellectual credit as these contributions often take a lot of time and requires a large amount of effort. 
+
+The third ethical issue I would like to bring up is the exploitation of low-paid labour as seen by Mechanical Turk workers. It seems that in some cases, there is a reliance on low-paid workes to label large datasets, where they take one arduous, repetitive labour for time consuming tasks, however this labour is seen as essential for training AI systems. This raises other concerns regarding neural nets, specifically fair compensation, credit, and working environments. Even with AI and neural nets, there is evidently a real world inequality highlighting the importance of accountability, transparency and fairness in the development of these systems.
 ```
