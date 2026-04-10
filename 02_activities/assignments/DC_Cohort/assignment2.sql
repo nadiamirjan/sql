@@ -68,6 +68,7 @@ HINT: Do not use the previous visit dates filter. */
 
 SELECT *
 FROM (
+	SELECT
 	customer_id,
 	market_date,
 	DENSE_RANK() OVER (
@@ -171,7 +172,7 @@ ranked_sales AS (
 		market_date,
 		total_sales,
 		RANK() OVER (ORDER BY total_sales DESC) AS highest_rank,
-		RANK() OVER (ORDER BY total_sales ASC) AS lowest_rank,
+		RANK() OVER (ORDER BY total_sales ASC) AS lowest_rank
 	FROM sales_by_date
 )
 
@@ -224,7 +225,7 @@ JOIN vendor v
 JOIN product p 
 	ON vi.product_id = p.product_id
 GROUP BY
-	v.vendor_name
+	v.vendor_name,
 	p.product_name,
 	p.original_price
 ORDER BY
@@ -263,7 +264,7 @@ INSERT INTO product_units
 SELECT
 	*,
 	CURRENT_TIMESTAMP AS snapshot_timestamp
-FROM pruduct
+FROM product
 WHERE product_name = 'Apple Pie'
 	AND product_qty_type = 'unit';
 
